@@ -20,7 +20,6 @@ const Products = ({ products }) => {
             <ProductCard product={product} />
           ))}
         </SimpleGrid>
-        {/* </HStack> */}
       </Flex>
     </>
   );

@@ -17,6 +17,7 @@ import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Butter from 'buttercms'
 import Products from '../components/Products';
+import SiteHeader from '../components/SiteHeader';
 
 
 const butter = Butter(process.env.NEXT_PUBLIC_BUTTER_API_TOKEN)
@@ -40,34 +41,10 @@ export default function Home() {
 
   return (
     <>
-      {/* <Container maxW="container.xl" h="100vh" >
-        <Flex justifyContent="space-between" alignContent="center">
-          <Text
-            as="a"
-            href="/"
-            fontSize="2rem"
-            color="gray.900"
-            fontFamily="Robo"
-            my="5px"
-          >
-            BJSS
-          </Text>
-          <Button
-            my="5px"
-            colorScheme="green"
-            variant="ghost"
-            leftIcon={<FiShoppingBag size="24px" />}
-            size="lg"
-            p={2}
-          >
-            View Cart
-          </Button>
-        </Flex>
-        <Divider /> */}
+        <SiteHeader/>
         <Box mt={4}>
           <Products products={products} />
         </Box>
-      {/* </Container> */}
     </>
   )
 }
