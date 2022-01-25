@@ -17,7 +17,7 @@ const Products = ({ products }) => {
           spacingY={20}
           mt={6}>
           {products.map((product) => (
-            <ProductCard product={product} />
+            <ProductCard product={product} key={product?.id} />
           ))}
         </SimpleGrid>
       </Flex>
