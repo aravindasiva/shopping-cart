@@ -21,12 +21,14 @@ import {
   IconButton
 } from "@chakra-ui/react";
 import { FiShoppingCart, FiShoppingBag } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Butter from "buttercms";
 import { motion } from 'framer-motion'
 import { FaCartPlus } from 'react-icons/fa'
+import { CartContext, Init } from "../../../context/CartContext";
 
 const ProductCard = ({ product }) => {
+  const { addProduct } = useContext<Init>(CartContext);
 
   return (
     <>
@@ -76,7 +78,7 @@ const ProductCard = ({ product }) => {
           <chakra.h1 color="white" fontWeight="bold" fontSize={{ base: 'xs', md: "sm", lg: 'lg' }}>
             {product?.price > 1 ? `£ ${product?.price}` : `${product?.price * 100} p`}
           </chakra.h1>
-          <IconButton size={'md'} icon={<FaCartPlus />} aria-label='add-to-cart' borderRadius={'2xl'} />
+          <IconButton onClick={()=> addProduct(product)} size={'md'} icon={<FaCartPlus />} aria-label='add-to-cart' borderRadius={'2xl'} />
         </Flex>
       </Box>
     </>
