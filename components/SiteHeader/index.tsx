@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useContext, useRef } from 'react';
 import {
   Box,
   Flex,
@@ -30,12 +30,15 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaShoppingCart } from 'react-icons/fa';
 import { SiTesco } from 'react-icons/si'
+import { CartContext, Init } from '../../context/CartContext';
 
 
 const SiteHeader = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef()
+
+  const {cart} = useContext<Init>(CartContext)
 
   return (
     <>
@@ -55,7 +58,7 @@ const SiteHeader = () => {
               <Button variant={'ghost'} borderRadius={'full'} onClick={onOpen}>
                 <FaShoppingCart />
                 <Badge rounded={'full'} mt='-4' ml='0.5' fontSize='0.8em' colorScheme='red'>
-                  1
+                  {cart.length}
                 </Badge>
               </Button>
 
