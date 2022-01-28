@@ -17,57 +17,28 @@ import {
   Icon,
   Badge,
   Circle,
-  HStack
+  HStack,
+  IconButton
 } from "@chakra-ui/react";
 import { FiShoppingCart, FiShoppingBag } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Butter from "buttercms";
 import { motion } from 'framer-motion'
+import { FaCartPlus } from 'react-icons/fa'
+import { CartContext, Init } from "../../../context/CartContext";
 
 const ProductCard = ({ product }) => {
-
-  const variants = {
-    normal: {
-      opacity: 0.85,
-    },
-    hover: {
-      scale: 1.1,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: 'backOut',
-      },
-    },
-    tap: {
-      scale: 0.85,
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: [0.6, -0.05, 0.01, 0.99],
-      },
-    },
-  }
-
-  const MotionImage = motion(Image)
+  const { addProduct } = useContext<Init>(CartContext);
 
   return (
-    <Box
-      boxShadow={'2xl'}
-    >
-      {/* {products.map((product) => ( */}
-      {/* <Flex
-          bg={useColorModeValue("#F9FAFB", "gray.600")}
-          p={50}
-          w="full"
-          alignItems="center"
-          justifyContent="center"
-        > */}
+    <>
       <Box
-        bg='gray.200'
+        borderColor='red'
+        border={'2px'}
         mx="auto"
-        // bg={useColorModeValue("white", "gray.800")}
+        bg={useColorModeValue("white", "gray.800")}
         boxShadow="lg"
-        rounded="xl"
+        borderRadius={'xl'}
       >
         <Box px={4} py={2}>
           <chakra.h1
@@ -79,7 +50,7 @@ const ProductCard = ({ product }) => {
             {product?.name}
           </chakra.h1>
           <Text
-            noOfLines={2}s
+            noOfLines={2} s
             mt={1}
             fontSize="sm"
             color={useColorModeValue("gray.600", "gray.400")}
@@ -87,21 +58,8 @@ const ProductCard = ({ product }) => {
             {product?.description}
           </Text>
         </Box>
-        {/* <MotionImage
-              height={48}
-              // width="full"
-              src={product?.image}
-              alt={`Picture of ${product.name}`}
-              objectFit="contain"
-              loading="lazy"
-              opacity={0.75}
-              whileHover={variants.hover}
-              whileTap={variants.tap}
-              fallback={<Skeleton height={48} width="100%" />}
-            /> */}
-
         <Image
-          h={48}
+          h={40}
           w="full"
           fit="contain"
           mt={2}
@@ -115,34 +73,15 @@ const ProductCard = ({ product }) => {
           px={4}
           py={2}
           bg="gray.900"
-          roundedBottom="xl"
+          roundedBottom="lg"
         >
-          <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+          <chakra.h1 color="white" fontWeight="bold" fontSize={{ base: 'xs', md: "sm", lg: 'lg' }}>
             {product?.price > 1 ? `£ ${product?.price}` : `${product?.price * 100} p`}
           </chakra.h1>
-          <chakra.button
-            px={2}
-            py={1}
-            bg="white"
-            fontSize="xs"
-            color="gray.900"
-            fontWeight="bold"
-            rounded="lg"
-            textTransform="uppercase"
-            _hover={{
-              bg: "gray.200",
-            }}
-            _focus={{
-              bg: "gray.400",
-            }}
-          >
-            Add to cart
-          </chakra.button>
+          <IconButton onClick={()=> addProduct(product)} size={'md'} icon={<FaCartPlus />} aria-label='add-to-cart' borderRadius={'2xl'} />
         </Flex>
       </Box>
-      {/* </Flex> */}
-      {/* ))} */}
-    </Box>
+    </>
   );
 }
 
