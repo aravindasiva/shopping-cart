@@ -6,7 +6,7 @@ export type Product = {
   id: number,
   name: string,
   description: string,
-  smallDescription: string,
+  smalldescription: string,
   image: string,
   price: number
 };
@@ -47,7 +47,7 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const bouceEnd = () => {
+  const bounceEnd = () => {
     dispatch({
       type: "BOUNCE_END",
     });
@@ -61,7 +61,7 @@ const CartProvider = ({ children }) => {
       bounce: state.bounce,
       removeProduct,
       addProduct,
-      bouceEnd,
+      bounceEnd,
     }}>
       {children}
     </CartContext.Provider>

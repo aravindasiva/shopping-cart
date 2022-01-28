@@ -38,7 +38,14 @@ const SiteHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef()
 
-  const {cart} = useContext<Init>(CartContext)
+  const {
+    cart,
+    totalItems,
+    totalAmount,
+    removeProduct,
+    bounce,
+    bouceEnd,
+  } = useContext<Init>(CartContext);
 
   return (
     <>

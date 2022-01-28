@@ -1,4 +1,4 @@
-export const cartReducer  = (state: any, action: any) => {
+export const cartReducer = (state: any, action: any) => {
   switch (action.type) {
 
     case "ADD_PRODUCT": {
@@ -39,7 +39,14 @@ export const cartReducer  = (state: any, action: any) => {
       };
     }
 
+    case "BOUNCE_END":
+      return {
+        ...state,
+        bounce: false,
+      };
+
+
     default:
-      break;
+      return state;
   }
 }

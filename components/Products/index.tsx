@@ -1,7 +1,11 @@
 import { Box, Flex, HStack, SimpleGrid, Stack } from "@chakra-ui/react";
+import { useContext } from "react";
+import { CartContext, Init } from "../../context/CartContext";
 import ProductCard from "./ProductCard";
 
 const Products = ({ products }) => {
+  const { addProduct } = useContext<Init>(CartContext);
+
   return (
     <>
       <Flex
@@ -17,7 +21,16 @@ const Products = ({ products }) => {
           spacingY={20}
           mt={6}>
           {products.map((product) => (
-            <ProductCard product={product} key={product?.id} />
+            <ProductCard
+              key={product?.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              description={product.description}
+              smalldescription={product.smalldescription}
+              image={product.image}
+              addToCart={addProduct}
+            />
           ))}
         </SimpleGrid>
       </Flex>
