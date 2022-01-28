@@ -6,9 +6,9 @@ export type Product = {
   id: number,
   name: string,
   description: string,
+  smallDescription: string,
   image: string,
-  price: number,
-  quantity: string
+  price: number
 };
 
 export interface Init {
