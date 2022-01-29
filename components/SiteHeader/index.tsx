@@ -26,11 +26,13 @@ import {
   DrawerBody,
   Input,
   DrawerFooter,
+  Text,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaShoppingCart } from 'react-icons/fa';
 import { SiTesco } from 'react-icons/si'
 import { CartContext, Init } from '../../context/CartContext';
+import CartCard from '../CartCard';
 
 
 const SiteHeader = () => {
@@ -45,7 +47,8 @@ const SiteHeader = () => {
     removeProduct,
     bounce,
     bouceEnd,
-  } = useContext<Init>(CartContext);
+  } = useContext<Init | any>(CartContext);
+  console.log("🚀 ~ file: index.tsx ~ line 50 ~ SiteHeader ~ cart", cart)
 
   return (
     <>
@@ -77,7 +80,8 @@ const SiteHeader = () => {
 
       <Drawer
         isOpen={isOpen}
-        placement={'right'}
+        size={'sm'}
+        placement='right'
         onClose={onClose}
       >
         <DrawerOverlay />
@@ -86,7 +90,19 @@ const SiteHeader = () => {
           <DrawerHeader>Your Cart</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder='Type here...' />
+            <>
+              {cart.map((item) => (
+                <>
+                  <CartCard id={item.id} name={item.name} image={item.image} quantity={item.quantity} price={item.price} />
+                </>
+              ))}
+
+              <Box>
+                <Text>
+                  Total Amount: {totalAmount}
+                </Text>
+              </Box>
+            </>
           </DrawerBody>
 
           <DrawerFooter>
