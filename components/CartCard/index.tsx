@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, HStack, IconButton, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Container, Flex, HStack, IconButton, Image, Spacer, Text, VStack } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { BsTrash } from 'react-icons/bs'
 import { CartContext, Init } from '../../context/CartContext';
@@ -17,18 +17,18 @@ const CartCard = ({ id, name, image, quantity, price }) => {
             <Image
               borderRadius={'lg'}
               src={image}
-              alt='Dan Abramov'
+              alt={name}
             />
           </Box>
           <Box w='100%' minH='100%'>
-            <HStack>
+            <Box pl={8} flexDirection={'column'}>
               <Text>
                 {name} x{quantity}
               </Text>
               <Text>
                 Price: {formatMoney}
               </Text>
-            </HStack>
+            </Box>
           </Box>
 
           <Box

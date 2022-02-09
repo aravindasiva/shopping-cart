@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { FiShoppingCart, FiShoppingBag } from "react-icons/fi";
 import React, { useContext, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
 import Butter from 'buttercms'
 import Products from '../components/Products';
 import SiteHeader from '../components/SiteHeader';

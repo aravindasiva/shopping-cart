@@ -33,6 +33,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { SiTesco } from 'react-icons/si'
 import { CartContext, Init } from '../../context/CartContext';
 import CartCard from '../CartCard';
+import EmptyCart from '../SVG/EmptyCartLight';
+import CartEmptyState from './CartEmptyState';
+import CurrencyConvert from '../CurrencyConvert';
 
 
 const SiteHeader = () => {
@@ -88,25 +91,34 @@ const SiteHeader = () => {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Your Cart</DrawerHeader>
-
           <DrawerBody>
             <>
-              {cart.map((item) => (
+              {cart.length < 1 ?
                 <>
-                  <CartCard id={item.id} name={item.name} image={item.image} quantity={item.quantity} price={item.price} />
+                  <CartEmptyState />
+                  <Center py={8}>
+                    <Button variant={'outline'} onClick={onClose}>Continue Shopping</Button>
+                  </Center>
                 </>
-              ))}
-
-              <Box>
-                <Text>
-                  Total Amount: {totalAmount}
-                </Text>
-              </Box>
+                :
+                <>
+                  {cart.map((item) => (
+                    <>
+                      <CartCard id={item.id} name={item.name} image={item.image} quantity={item.quantity} price={item.price} />
+                    </>
+                  ))}
+                  <Box>
+                    <Text fontSize={'large'} fontWeight='bold'>
+                      Total Amount: {totalAmount}
+                    </Text>
+                    <CurrencyConvert/>
+                  </Box>
+                </>
+              }
             </>
           </DrawerBody>
-
           <DrawerFooter>
-            <Button w={'full'} borderRadius={'full'} colorScheme='green'>Checkout</Button>
+            {cart.length > 0 && <Button mb={12} w={'full'} borderRadius={'full'} colorScheme='green'>Checkout</Button>}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

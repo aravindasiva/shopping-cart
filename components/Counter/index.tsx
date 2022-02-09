@@ -25,7 +25,7 @@ const Counter = ({ productQuantity, updateQuantity }: CounterProps) => {
   return (
     <HStack>
       <Button _focus={{outline: 'none'}} onClick={decrement} rounded={'full'} fontSize={'xl'}>
-        –
+        -
       </Button>
       <Box maxW={16}>
         <Input
