@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
-import Butter from 'buttercms'
+import { createContext, useReducer } from "react";
 import { cartReducer } from "./CartReducer";
 
 export type Product = {
